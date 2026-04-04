@@ -1,0 +1,5 @@
+name: Test Task
+description: A simple test task for validating Alcove's task repo sync.
+prompt: |
+  This is a test task. Print "Hello from test-task" and exit.
+timeout: 30
