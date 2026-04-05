@@ -1,0 +1,10 @@
+name: Missing Profile Task
+description: |
+  This task intentionally references a security profile that does not exist.
+  It should show a sync error and be blocked from running.
+prompt: |
+  This task should never execute. It exists to test that Alcove correctly
+  detects and warns about missing security profile references.
+timeout: 30
+profiles:
+  - nonexistent-profile
