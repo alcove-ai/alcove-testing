@@ -1,0 +1,12 @@
+name: testing-readonly
+display_name: Testing Read Only
+description: Read-only access to bmbouter/alcove-testing for test validation
+tools:
+  github:
+    rules:
+      - repos: ["bmbouter/alcove-testing"]
+        operations:
+          - clone
+          - read_prs
+          - read_issues
+          - read_contents
