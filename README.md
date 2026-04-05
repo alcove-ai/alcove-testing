@@ -13,6 +13,7 @@ This repo contains example YAML task definitions and security profiles used to v
 | `test-task.yml` | Basic task that clones this repo and reads a file — validates repo cloning and prompt execution |
 | `another-task.yml` | Scheduled task (every 5 minutes) — validates cron scheduling and session tracking |
 | `missing-profile-task.yml` | References a non-existent security profile — validates sync error warnings and dispatch blocking |
+| `issue-greeter.yml` | Event-triggered task (GitHub `issues.opened` polling) — validates event-driven task dispatch and GitHub write access |
 
 ### Security Profiles (`.alcove/security-profiles/`)
 

@@ -1,0 +1,19 @@
+name: Issue Greeter
+description: Comments on new issues in alcove-testing with a friendly greeting
+prompt: |
+  An issue was just opened on the alcove-testing repository.
+  Read the issue title and body, then post a brief, friendly comment
+  thanking the reporter and acknowledging their issue.
+repo: https://github.com/bmbouter/alcove-testing.git
+timeout: 120
+profiles:
+  - testing-writer
+trigger:
+  github:
+    events:
+      - issues
+    actions:
+      - opened
+    repos:
+      - bmbouter/alcove-testing
+    delivery_mode: polling
