@@ -1,7 +1,7 @@
 name: Test Scheduled Task
 description: A scheduled test task that runs every 5 minutes.
 prompt: |
-  This is another test task. Print "Hello from another-task" and exit.
+  This is the scheduled test task (runs every 5 minutes via cron). Print "Hello from Test Scheduled Task" and exit.
 timeout: 30
 schedule:
   cron: "*/5 * * * *"
