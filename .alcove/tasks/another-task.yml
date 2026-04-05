@@ -4,5 +4,5 @@ prompt: |
   This is another test task. Print "Hello from another-task" and exit.
 timeout: 30
 schedule:
-  cron: "0 0 * * 0"
-  enabled: false
+  cron: "*/5 * * * *"
+  enabled: true
