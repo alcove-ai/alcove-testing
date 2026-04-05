@@ -1,5 +1,5 @@
-name: Another Task
-description: A second test task for multi-task validation.
+name: Test Scheduled Task
+description: A scheduled test task that runs every 5 minutes.
 prompt: |
   This is another test task. Print "Hello from another-task" and exit.
 timeout: 30
