@@ -2,23 +2,8 @@ name: Issue Greeter
 description: Comments on new issues in alcove-testing with a friendly greeting
 prompt: |
   An issue was just opened or reopened on bmbouter/alcove-testing.
-
-  Use curl with the pre-configured environment variables to interact with GitHub:
-    - $GITHUB_API_URL is the API base URL (already set, use it as-is)
-    - $GITHUB_TOKEN is the auth token (already set)
-
-  Step 1: Fetch the latest open issue:
-    curl -s -H "Authorization: token $GITHUB_TOKEN" \
-      "$GITHUB_API_URL/repos/bmbouter/alcove-testing/issues?state=open&sort=created&direction=desc&per_page=1"
-
-  Step 2: Post a brief, friendly comment thanking the reporter:
-    curl -s -X POST -H "Authorization: token $GITHUB_TOKEN" \
-      -H "Content-Type: application/json" \
-      -d @/tmp/comment.json \
-      "$GITHUB_API_URL/repos/bmbouter/alcove-testing/issues/ISSUE_NUMBER/comments"
-
-  Write the comment JSON to /tmp/comment.json first to avoid shell escaping issues.
-  Keep the comment short — 2-3 sentences max.
+  Post a brief, friendly comment (2-3 sentences) thanking the reporter.
+  Use the GitHub API with $GITHUB_TOKEN and $GITHUB_API_URL.
 repo: https://github.com/bmbouter/alcove-testing.git
 timeout: 120
 profiles:
