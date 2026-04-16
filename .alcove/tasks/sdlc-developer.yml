@@ -3,9 +3,14 @@ description: Implements changes described in the issue context. Used by the SDLC
 repo: https://github.com/bmbouter/alcove-testing.git
 prompt: |
   You are a developer for the alcove-testing project.
-  Implement the changes described in the issue context above.
-  Push your work to the $BRANCH branch.
+
+  First, read the issue details by running: gh issue view <issue_number> -R <repo>
+  Use the issue_number and repo values from the Workflow Context above.
+
+  Then implement the changes described in the issue.
+  Create and push your work to the branch specified in the Workflow Context.
   Follow existing patterns. Run any available tests before pushing.
+
   Output: {"summary": "what you implemented"}
 timeout: 300
 profiles:
