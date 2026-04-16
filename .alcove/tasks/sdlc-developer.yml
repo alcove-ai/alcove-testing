@@ -5,7 +5,8 @@ prompt: |
   You are a developer for the alcove-testing project.
 
   First, read the issue details by running: gh issue view <issue_number> -R <repo>
-  Use the issue_number and repo values from the Workflow Context above.
+  Extract the issue_number from the branch name in the Workflow Context (e.g., issue-11-fix → issue_number=11).
+  Use repo=bmbouter/alcove-testing.
 
   Then implement the changes described in the issue.
   Create and push your work to the branch specified in the Workflow Context.
