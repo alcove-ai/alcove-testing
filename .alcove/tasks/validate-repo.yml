@@ -1,0 +1,14 @@
+name: Repository Validator
+description: Validates all task definitions and security profiles in the repository for consistency and correctness
+prompt: |
+  You have been given a cloned copy of the alcove-testing repository.
+  Run the validation script to check all task definitions:
+
+  python3 scripts/validate-tasks.py
+
+  If the validation passes, report success.
+  If there are any issues, report them with details about what needs to be fixed.
+repo: https://github.com/bmbouter/alcove-testing.git
+timeout: 120
+profiles:
+  - testing-readonly
