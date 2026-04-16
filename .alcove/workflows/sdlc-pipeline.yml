@@ -45,6 +45,8 @@ workflow:
     inputs:
       branch: "{{steps.implement.inputs.branch}}"
       ci_logs: "{{steps.await-ci.outputs.failure_logs}}"
+      issue_number: "{{trigger.issue_number}}"
+      repo: "bmbouter/alcove-testing"
     outputs: [summary]
 
   - id: code-review
@@ -74,6 +76,8 @@ workflow:
       branch: "{{steps.implement.inputs.branch}}"
       code_feedback: "{{steps.code-review.outputs.comments}}"
       security_feedback: "{{steps.security-review.outputs.comments}}"
+      issue_number: "{{trigger.issue_number}}"
+      repo: "bmbouter/alcove-testing"
     outputs: [summary]
 
   - id: merge
