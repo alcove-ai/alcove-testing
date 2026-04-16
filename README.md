@@ -14,6 +14,7 @@ This repo contains example YAML task definitions and security profiles used to v
 | `another-task.yml` | Scheduled task (every 5 minutes) — validates cron scheduling and session tracking |
 | `missing-profile-task.yml` | References a non-existent security profile — validates sync error warnings and dispatch blocking |
 | `issue-greeter.yml` | Event-triggered task (GitHub `issues.opened` polling) — validates event-driven task dispatch and GitHub write access |
+| `validate-repo.yml` | Repository integrity validation — validates all task definitions and security profiles for consistency |
 
 ### Security Profiles (`.alcove/security-profiles/`)
 
@@ -27,6 +28,12 @@ This repo contains example YAML task definitions and security profiles used to v
 | File | Purpose |
 |------|---------|
 | `test-data/greeting.txt` | Simple text file read by the test task to verify repo cloning works |
+
+### Validation Tools
+
+| File | Purpose |
+|------|---------|
+| `scripts/validate-tasks.py` | Python script to validate task definitions and security profile references |
 
 ## Usage
 
