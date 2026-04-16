@@ -2,6 +2,11 @@ name: SDLC Developer
 description: Implements changes described in the issue context. Used by the SDLC workflow.
 repo: https://github.com/bmbouter/alcove-testing.git
 prompt: |
+  Workflow Context (from previous steps):
+    issue_number: {{issue_number}}
+    repo: {{repo}}
+    branch: {{branch}}
+
   You are a developer for the alcove-testing project.
 
   First, read the issue details by running: gh issue view <issue_number> -R <repo>
