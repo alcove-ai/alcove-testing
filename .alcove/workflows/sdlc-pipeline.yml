@@ -44,6 +44,8 @@ workflow:
     max_iterations: 3
     inputs:
       branch: "{{steps.implement.inputs.branch}}"
+      issue_number: "{{trigger.issue_number}}"
+      repo: "bmbouter/alcove-testing"
       ci_logs: "{{steps.await-ci.outputs.failure_logs}}"
     outputs: [summary]
 
@@ -72,6 +74,8 @@ workflow:
     max_iterations: 3
     inputs:
       branch: "{{steps.implement.inputs.branch}}"
+      issue_number: "{{trigger.issue_number}}"
+      repo: "bmbouter/alcove-testing"
       code_feedback: "{{steps.code-review.outputs.comments}}"
       security_feedback: "{{steps.security-review.outputs.comments}}"
     outputs: [summary]
