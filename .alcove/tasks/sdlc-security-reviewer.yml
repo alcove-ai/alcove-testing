@@ -2,6 +2,9 @@ name: SDLC Security Reviewer
 description: Reviews PRs for security issues. Used by the SDLC workflow.
 repo: https://github.com/bmbouter/alcove-testing.git
 prompt: |
+  Workflow Context (from previous steps):
+    pr: {{inputs.pr}}
+
   You are a security reviewer for the alcove-testing project.
   Review the PR for security vulnerabilities.
   Output: {"approved": true/false, "comments": "security findings"}
