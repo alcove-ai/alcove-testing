@@ -22,11 +22,18 @@ This repo contains example YAML task definitions and security profiles used to v
 | `testing-readonly.yml` | Read-only GitHub access to this repo — validates YAML profile sync |
 | `testing-writer.yml` | Read+write GitHub access to this repo — validates write-scoped profiles |
 
+### Workflows (`.alcove/workflows/`)
+
+| File | Purpose |
+|------|---------|
+| `sdlc-pipeline.yml` | SDLC workflow definition that automates development, review, and deployment pipeline |
+
 ### Test Data
 
 | File | Purpose |
 |------|---------|
 | `test-data/greeting.txt` | Simple text file read by the test task to verify repo cloning works |
+| `test-structure.sh` | Validation script that checks repository structure and configuration files |
 
 ## Usage
 
