@@ -13,3 +13,4 @@ tools:
           - push_branch
           - create_pr_draft
           - create_comment
+          - review_pr
