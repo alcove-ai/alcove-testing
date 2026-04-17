@@ -14,6 +14,11 @@ This repo contains example YAML task definitions and security profiles used to v
 | `another-task.yml` | Scheduled task (every 5 minutes) — validates cron scheduling and session tracking |
 | `missing-profile-task.yml` | References a non-existent security profile — validates sync error warnings and dispatch blocking |
 | `issue-greeter.yml` | Event-triggered task (GitHub `issues.opened` polling) — validates event-driven task dispatch and GitHub write access |
+| `debug-env.yml` | Environment inspection tool — validates credential injection and networking setup |
+| `health-monitor.yml` | Daily comprehensive health check — validates task definitions, security profiles, and repository integrity |
+| `sdlc-developer.yml` | SDLC developer agent — implements changes described in GitHub issues with workflow integration |
+| `sdlc-reviewer.yml` | SDLC code reviewer — performs automated code reviews on pull requests |
+| `sdlc-security-reviewer.yml` | SDLC security reviewer — performs security analysis on pull requests |
 
 ### Security Profiles (`.alcove/security-profiles/`)
 
@@ -21,6 +26,12 @@ This repo contains example YAML task definitions and security profiles used to v
 |------|---------|
 | `testing-readonly.yml` | Read-only GitHub access to this repo — validates YAML profile sync |
 | `testing-writer.yml` | Read+write GitHub access to this repo — validates write-scoped profiles |
+
+### Workflows (`.alcove/workflows/`)
+
+| File | Purpose |
+|------|---------|
+| `sdlc-pipeline.yml` | End-to-end SDLC workflow — automated issue handling, development, review, and merging |
 
 ### Test Data
 

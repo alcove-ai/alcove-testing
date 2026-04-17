@@ -1,0 +1,59 @@
+name: Health Monitor
+description: |
+  Comprehensive health check for the alcove-testing repository.
+  Validates task definitions, security profiles, and repo integrity.
+  Runs periodic checks and reports issues via GitHub issues.
+
+prompt: |
+  You are a repository health monitor for the alcove-testing project.
+
+  Perform these comprehensive health checks:
+
+  1. **Task Validation**: Run the validation script and report any issues
+     ```bash
+     python3 scripts/validate-tasks.py
+     ```
+
+  2. **Security Profile Check**: Verify all security profiles are properly formatted
+     ```bash
+     find .alcove/security-profiles -name "*.yml" -exec echo "Checking {}" \; -exec head -5 {} \;
+     ```
+
+  3. **Repository Integrity**: Check git status and recent commits
+     ```bash
+     git status
+     git log --oneline -5
+     ```
+
+  4. **File Structure Validation**: Ensure all expected directories and files exist
+     ```bash
+     ls -la .alcove/
+     ls -la .alcove/tasks/
+     ls -la .alcove/security-profiles/
+     ls -la .alcove/workflows/
+     ```
+
+  5. **Test Data Integrity**: Verify test data files are accessible
+     ```bash
+     cat test-data/greeting.txt
+     ```
+
+  If any issues are found, report them clearly with:
+  - What the issue is
+  - Where it was found
+  - Suggested fix (if applicable)
+
+  If everything is healthy, provide a summary of:
+  - Number of tasks validated
+  - Number of security profiles found
+  - Repository status
+  - Any recommendations for improvements
+
+timeout: 300
+
+schedule:
+  cron: "0 6 * * *"
+  enabled: true
+
+profiles:
+  - testing-readonly
