@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Task Definition Validator for alcove-testing
+Task and Workflow Definition Validator for alcove-testing
 
-Validates that all task definitions in .alcove/tasks/ follow expected patterns
-and reference valid security profiles.
+Validates that all task definitions in .alcove/tasks/ and workflow definitions
+in .alcove/workflows/ follow expected patterns and reference valid security profiles.
 
 Uses basic text parsing to avoid external dependencies.
 """
@@ -121,6 +121,51 @@ def validate_task(task_path, available_profiles):
 
     return len(errors) == 0
 
+def validate_workflow(workflow_path):
+    """Validate a single workflow definition"""
+    print(f"Validating {workflow_path.name}...")
+
+    try:
+        with open(workflow_path, 'r') as f:
+            content = f.read()
+    except Exception as e:
+        print(f"  ❌ Error reading file: {e}")
+        return False
+
+    errors = []
+    warnings = []
+
+    # Check required fields
+    name = parse_yaml_value(content, 'name')
+    if not name:
+        errors.append("Missing required field: name")
+
+    # Check for trigger section
+    if not check_yaml_section(content, 'trigger'):
+        errors.append("Missing required field: trigger")
+
+    # Check for workflow section
+    if not check_yaml_section(content, 'workflow'):
+        errors.append("Missing required field: workflow")
+
+    # Print results
+    if errors:
+        print(f"  ❌ ERRORS in {workflow_path.name}:")
+        for error in errors:
+            print(f"    - {error}")
+
+    if warnings:
+        print(f"  ⚠️  WARNINGS in {workflow_path.name}:")
+        for warning in warnings:
+            print(f"    - {warning}")
+
+    if not errors and not warnings:
+        print(f"  ✅ {workflow_path.name} is valid")
+    elif not errors:
+        print(f"  ✅ {workflow_path.name} is valid (with warnings)")
+
+    return len(errors) == 0
+
 def load_security_profiles():
     """Load all available security profile names"""
     profiles_dir = Path('.alcove/security-profiles')
@@ -141,7 +186,7 @@ def load_security_profiles():
 
 def main():
     """Main validation function"""
-    print("🔍 Alcove Task Definition Validator")
+    print("🔍 Alcove Task and Workflow Definition Validator")
     print("=" * 40)
 
     # Check if we're in the right directory
@@ -156,17 +201,12 @@ def main():
 
     # Find and validate all task files
     tasks_dir = Path('.alcove/tasks')
-    if not tasks_dir.exists():
-        print("❌ Error: .alcove/tasks directory not found")
-        sys.exit(1)
-
-    task_files = list(tasks_dir.glob('*.yml'))
-    if not task_files:
-        print("❌ Error: No task files found")
-        sys.exit(1)
-
-    print(f"🔧 Validating {len(task_files)} task files...")
-    print()
+    task_files = []
+    if tasks_dir.exists():
+        task_files = list(tasks_dir.glob('*.yml'))
+        if task_files:
+            print(f"🔧 Validating {len(task_files)} task files...")
+            print()
 
     all_valid = True
     for task_file in sorted(task_files):
@@ -174,12 +214,30 @@ def main():
         all_valid = all_valid and valid
         print()
 
+    # Find and validate all workflow files
+    workflows_dir = Path('.alcove/workflows')
+    workflow_files = []
+    if workflows_dir.exists():
+        workflow_files = list(workflows_dir.glob('*.yml'))
+        if workflow_files:
+            print(f"⚙️  Validating {len(workflow_files)} workflow files...")
+            print()
+
+    for workflow_file in sorted(workflow_files):
+        valid = validate_workflow(workflow_file)
+        all_valid = all_valid and valid
+        print()
+
+    if not task_files and not workflow_files:
+        print("❌ Error: No task or workflow files found")
+        sys.exit(1)
+
     # Summary
     if all_valid:
-        print("🎉 All task definitions are valid!")
+        print("🎉 All definitions are valid!")
         sys.exit(0)
     else:
-        print("❌ Some task definitions have errors. Please fix them.")
+        print("❌ Some definitions have errors. Please fix them.")
         sys.exit(1)
 
 if __name__ == '__main__':

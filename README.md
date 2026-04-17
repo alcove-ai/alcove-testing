@@ -33,7 +33,7 @@ This repo contains example YAML task definitions and security profiles used to v
 
 | File | Purpose |
 |------|---------|
-| `scripts/validate-tasks.py` | Python script to validate task definitions and security profile references |
+| `scripts/validate-tasks.py` | Python script to validate task definitions, workflow definitions, and security profile references |
 
 ## Usage
 
