@@ -1,2 +1,3 @@
 Hello from alcove-testing! If you can read this, the repo was cloned successfully.
+Welcome to the SDLC pipeline test!
 URL: https://github.com/bmbouter/alcove-testing
