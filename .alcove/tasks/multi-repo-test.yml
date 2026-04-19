@@ -1,21 +1,28 @@
 name: Multi-Repo Test
-description: Tests multi-repo cloning by verifying both repos are available
+description: Tests multi-repo support by cloning two independent repos and running tests in both
 prompt: |
   Two repositories have been cloned into your workspace:
-  - /workspace/alcove-testing/ — the main test project
-  - /workspace/alcove-testing-lib/ — a Go library
+  - /workspace/alcove-testing-sample-app/ — a Go app with a strutil package
+  - /workspace/alcove-testing-sample-app-lib/ — a Go library with a mathlib package
 
-  Verify both repos are present:
-  1. List the contents of /workspace/ to see both directories
-  2. Check /workspace/alcove-testing/test-data/go-project/main.go exists
-  3. Check /workspace/alcove-testing-lib/mathlib/mathlib.go exists
-  4. Read both files and report what you find
+  IMPORTANT: Run all test commands via the dev container as described in each
+  repo's CLAUDE.md. Do not run go commands directly.
+
+  Steps:
+  1. Verify the dev container is healthy
+  2. List /workspace/ to confirm both repos are cloned
+  3. Run tests in the sample app via the dev container
+  4. Run tests in the sample lib via the dev container
+  5. Both test suites should have failures — report what you find
 
   Write results to /tmp/alcove-outputs.json:
-  {"repos_found": "2", "app_exists": "true", "lib_exists": "true"}
+  {"repos_found": "2", "app_test_status": "fail or pass", "lib_test_status": "fail or pass",
+   "app_bug": "description of bug found", "lib_bug": "description of bug found"}
 repos:
-  - url: https://github.com/bmbouter/alcove-testing.git
-  - url: https://github.com/bmbouter/alcove-testing-lib.git
-timeout: 120
+  - url: https://github.com/bmbouter/alcove-testing-sample-app.git
+  - url: https://github.com/bmbouter/alcove-testing-sample-app-lib.git
+timeout: 180
+dev_container:
+  image: docker.io/library/golang:1.25
 profiles:
   - testing-readonly
