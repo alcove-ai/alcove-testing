@@ -1,16 +1,22 @@
 name: Dev Container Go Test
-description: Uses a dev container to build and test a Go project, finds and fixes a bug
+description: Uses a dev container to fix a bug in a Go project, pushes to a branch
 prompt: |
   The Go project at test-data/go-project/ has a bug that causes test failures.
-  Find the bug, fix it, and verify the tests pass.
 
   IMPORTANT: Run all build and test commands via the dev container as described
   in CLAUDE.md. Do not run go commands directly.
 
-  Write results to /tmp/alcove-outputs.json with keys: test_result, bug_description, fix_applied.
+  Steps:
+  1. Create a new branch: git checkout -b dev-container-test-$(date +%s)
+  2. Find and fix the bug in the Go project
+  3. Verify tests pass via the dev container
+  4. Commit your fix and push the branch:
+     git add -A && git commit -m "Fix Add function bug" && git push origin HEAD
+  5. Write results to /tmp/alcove-outputs.json including the branch name:
+     {"test_result": "pass", "branch": "<your-branch-name>", "fix_applied": "description"}
 repo: https://github.com/bmbouter/alcove-testing.git
 timeout: 300
 dev_container:
   image: docker.io/library/golang:1.25
 profiles:
-  - testing-readonly
+  - testing-writer

@@ -1,7 +1,18 @@
 name: Dev Container Test Pipeline
-description: End-to-end test of the dev container feature with a Go project
+description: Two-step pipeline demonstrating shared branch with dev containers
 
 workflow:
   - id: fix-bug
     type: agent
     agent: Dev Container Go Test
+    inputs:
+      branch: "dev-container-test"
+    outputs: [branch]
+
+  - id: add-docs
+    type: agent
+    agent: Dev Container Doc Writer
+    depends: "fix-bug.Succeeded"
+    inputs:
+      branch: "{{steps.fix-bug.outputs.branch}}"
+    outputs: [docs_added]
