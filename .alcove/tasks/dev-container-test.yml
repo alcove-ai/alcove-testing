@@ -14,7 +14,8 @@ prompt: |
   4. Confirm the output contains "Hello from dev container!"
   5. Write the results to /tmp/alcove-outputs.json:
      {"test_result": "pass", "message": "Dev container shim working"}
-repo: https://github.com/bmbouter/alcove-testing.git
+repos:
+  - url: https://github.com/bmbouter/alcove-testing.git
 timeout: 120
 dev_container:
   image: docker.io/library/python:3.11-slim

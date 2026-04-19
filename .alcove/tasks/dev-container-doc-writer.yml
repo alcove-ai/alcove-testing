@@ -16,7 +16,8 @@ prompt: |
   3. Run tests via the dev container to verify nothing is broken (see CLAUDE.md)
   4. Commit and push to the SAME branch: git add -A && git commit -m "Add documentation" && git push origin HEAD
   5. Write results to /tmp/alcove-outputs.json: {"docs_added": "true", "tests_pass": "true"}
-repo: https://github.com/bmbouter/alcove-testing.git
+repos:
+  - url: https://github.com/bmbouter/alcove-testing.git
 timeout: 300
 dev_container:
   image: docker.io/library/golang:1.25

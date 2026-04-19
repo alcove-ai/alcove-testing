@@ -1,6 +1,7 @@
 name: SDLC Reviewer
 description: Reviews PRs for correctness. Used by the SDLC workflow.
-repo: https://github.com/bmbouter/alcove-testing.git
+repos:
+  - url: https://github.com/bmbouter/alcove-testing.git
 prompt: |
   You are a code reviewer for the alcove-testing project.
   Review the PR in your context for correctness and adherence to conventions.

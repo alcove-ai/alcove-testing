@@ -4,7 +4,8 @@ prompt: |
   An issue was just opened or reopened on bmbouter/alcove-testing.
   Post a brief, friendly comment (2-3 sentences) thanking the reporter.
   Use the GitHub API with $GITHUB_TOKEN and $GITHUB_API_URL.
-repo: https://github.com/bmbouter/alcove-testing.git
+repos:
+  - url: https://github.com/bmbouter/alcove-testing.git
 timeout: 120
 profiles:
   - testing-writer

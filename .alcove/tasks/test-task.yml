@@ -4,7 +4,8 @@ prompt: |
   You have been given a cloned copy of the alcove-testing repository.
   Read the file test-data/greeting.txt and print its contents.
   Then confirm that the repo was cloned successfully.
-repo: https://github.com/bmbouter/alcove-testing.git
+repos:
+  - url: https://github.com/bmbouter/alcove-testing.git
 timeout: 60
 profiles:
   - testing-readonly
