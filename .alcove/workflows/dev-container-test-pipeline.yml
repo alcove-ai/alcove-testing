@@ -1,0 +1,7 @@
+name: Dev Container Test Pipeline
+description: End-to-end test of the dev container feature with a Go project
+
+workflow:
+  - id: fix-bug
+    type: agent
+    agent: Dev Container Go Test

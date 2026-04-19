@@ -1,0 +1,31 @@
+name: Dev Container Go Test
+description: Uses a dev container to build and test a Go project, finds and fixes a bug
+prompt: |
+  You have a Go project at /workspace/test-data/go-project/ that contains a deliberate bug.
+  A dev container with Go 1.25 is running alongside you with a shared /workspace volume.
+
+  Follow these steps:
+
+  1. Verify the dev container is healthy:
+     curl -s http://$DEV_CONTAINER_HOST/healthz
+
+  2. Run the tests via the dev container:
+     curl -s -X POST http://$DEV_CONTAINER_HOST/exec \
+       -H "Authorization: Bearer $DEV_TOKEN" \
+       -H "Content-Type: application/json" \
+       -d '{"cmd": "cd /workspace/test-data/go-project && go test -v ./...", "timeout": 30}'
+
+  3. The tests will fail. Read the test output to understand why.
+
+  4. Fix the bug in main.go (the Add function is wrong).
+
+  5. Run the tests again via the dev container to verify your fix.
+
+  6. Write results to /tmp/alcove-outputs.json:
+     {"test_result": "pass", "bug_description": "Add function used subtraction instead of addition", "fix_applied": "changed return a - b to return a + b"}
+repo: https://github.com/bmbouter/alcove-testing.git
+timeout: 300
+dev_container:
+  image: docker.io/library/golang:1.25
+profiles:
+  - testing-readonly
