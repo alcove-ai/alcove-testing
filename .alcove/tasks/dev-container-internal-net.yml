@@ -1,0 +1,30 @@
+name: Dev Container Internal Net
+description: Verifies that a dev container with default (internal) network has NO internet access.
+prompt: |
+  You have a dev container available. Verify it has NO internet access:
+
+  1. Check the dev container is accessible:
+     curl -s http://$DEV_CONTAINER_HOST/healthz
+     This should return "ok" — the dev container is reachable on the internal network.
+
+  2. Try to reach the internet from inside the dev container:
+     curl -s -X POST http://$DEV_CONTAINER_HOST/exec \
+       -H "Authorization: Bearer $DEV_TOKEN" \
+       -H "Content-Type: application/json" \
+       -d '{"cmd": "curl -s --connect-timeout 5 http://httpbin.org/get", "timeout": 10}'
+
+  3. The command above SHOULD FAIL (timeout or connection refused). This is expected
+     because the dev container is on the internal network only and cannot reach the internet.
+
+  4. Write the results to /tmp/alcove-outputs.json:
+     - If the curl to httpbin.org failed (timeout/connection refused), the test PASSED:
+       {"test_result": "pass", "message": "Dev container correctly has no internet access"}
+     - If the curl to httpbin.org succeeded, the test FAILED:
+       {"test_result": "fail", "message": "Dev container unexpectedly has internet access"}
+repos:
+  - url: https://github.com/bmbouter/alcove-testing.git
+timeout: 120
+dev_container:
+  image: docker.io/library/python:3.11-slim
+profiles:
+  - testing-readonly

@@ -1,0 +1,31 @@
+name: Dev Container External Net
+description: Verifies that a dev container with external network access CAN reach the internet.
+prompt: |
+  You have a dev container available with internet access. Verify it works:
+
+  1. Check the dev container is accessible:
+     curl -s http://$DEV_CONTAINER_HOST/healthz
+     This should return "ok" — the dev container is reachable on the internal network.
+
+  2. Try to reach the internet from inside the dev container:
+     curl -s -X POST http://$DEV_CONTAINER_HOST/exec \
+       -H "Authorization: Bearer $DEV_TOKEN" \
+       -H "Content-Type: application/json" \
+       -d '{"cmd": "curl -s --connect-timeout 10 http://httpbin.org/get", "timeout": 15}'
+
+  3. The command above SHOULD SUCCEED and return JSON from httpbin.org. This confirms
+     the dev container has internet access via the external network.
+
+  4. Write the results to /tmp/alcove-outputs.json:
+     - If the curl to httpbin.org succeeded, the test PASSED:
+       {"test_result": "pass", "message": "Dev container correctly has internet access"}
+     - If the curl to httpbin.org failed, the test FAILED:
+       {"test_result": "fail", "message": "Dev container unexpectedly has no internet access"}
+repos:
+  - url: https://github.com/bmbouter/alcove-testing.git
+timeout: 120
+dev_container:
+  image: docker.io/library/python:3.11-slim
+  network_access: external
+profiles:
+  - testing-readonly
