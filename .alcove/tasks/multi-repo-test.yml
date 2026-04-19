@@ -1,0 +1,21 @@
+name: Multi-Repo Test
+description: Tests multi-repo cloning by verifying both repos are available
+prompt: |
+  Two repositories have been cloned into your workspace:
+  - /workspace/alcove-testing/ — the main test project
+  - /workspace/alcove-testing-lib/ — a Go library
+
+  Verify both repos are present:
+  1. List the contents of /workspace/ to see both directories
+  2. Check /workspace/alcove-testing/test-data/go-project/main.go exists
+  3. Check /workspace/alcove-testing-lib/mathlib/mathlib.go exists
+  4. Read both files and report what you find
+
+  Write results to /tmp/alcove-outputs.json:
+  {"repos_found": "2", "app_exists": "true", "lib_exists": "true"}
+repos:
+  - url: https://github.com/bmbouter/alcove-testing.git
+  - url: https://github.com/bmbouter/alcove-testing-lib.git
+timeout: 120
+profiles:
+  - testing-readonly
