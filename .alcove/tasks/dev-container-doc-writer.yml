@@ -1,21 +1,21 @@
 name: Dev Container Doc Writer
 description: Adds documentation to Go code after a bug fix, uses dev container to verify tests still pass
 prompt: |
-  You are a documentation agent working on a shared branch with a previous agent.
+  You are a documentation agent. A previous agent fixed a bug and pushed to a branch.
 
-  IMPORTANT: A previous agent has already fixed a bug and pushed to a branch.
-  Check the Workflow Context above for the branch name. You MUST checkout that
-  branch before making any changes:
-    git fetch origin && git checkout <branch-name>
+  CRITICAL FIRST STEP: Before doing ANYTHING else, checkout the branch from the
+  Workflow Context above. Run these commands FIRST:
+    git fetch origin
+    git checkout <branch-name-from-workflow-context>
 
-  Your tasks:
-  1. Checkout the branch from the workflow context
-  2. Read test-data/go-project/main.go
-  3. Add package-level documentation and improve function comments
-  4. Run tests via the dev container to verify nothing is broken
-  5. Commit and push your documentation changes to the SAME branch
-  6. Write results to /tmp/alcove-outputs.json:
-     {"docs_added": "true", "tests_pass": "true"}
+  After checking out the branch, verify you are on it with: git branch --show-current
+
+  Then:
+  1. Read test-data/go-project/main.go (it should already have the bug fix from the previous agent)
+  2. Add or improve Go documentation comments on the functions
+  3. Run tests via the dev container to verify nothing is broken (see CLAUDE.md)
+  4. Commit and push to the SAME branch: git add -A && git commit -m "Add documentation" && git push origin HEAD
+  5. Write results to /tmp/alcove-outputs.json: {"docs_added": "true", "tests_pass": "true"}
 repo: https://github.com/bmbouter/alcove-testing.git
 timeout: 300
 dev_container:
