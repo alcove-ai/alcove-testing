@@ -2,7 +2,11 @@ name: Dev Container Go Test
 description: Uses a dev container to build and test a Go project, finds and fixes a bug
 prompt: |
   The Go project at test-data/go-project/ has a bug that causes test failures.
-  Find the bug, fix it, and verify the tests pass using the dev container.
+  Find the bug, fix it, and verify the tests pass.
+
+  IMPORTANT: Run all build and test commands via the dev container as described
+  in CLAUDE.md. Do not run go commands directly.
+
   Write results to /tmp/alcove-outputs.json with keys: test_result, bug_description, fix_applied.
 repo: https://github.com/bmbouter/alcove-testing.git
 timeout: 300

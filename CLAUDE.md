@@ -12,14 +12,14 @@ Test fixtures and agent definitions for the Alcove platform.
 
 ## Dev Container
 
-When a dev container is available, use it to build and test code. The dev
-container shares a `/workspace` volume with your working directory — files
-you edit are immediately visible inside the dev container.
+This project uses a dev container for building and testing code. Do NOT run
+build or test commands directly — always use the dev container, which has the
+correct toolchain and dependencies.
 
-### Checking if a dev container is available
+### Checking availability
 
-If the `DEV_CONTAINER_HOST` and `DEV_TOKEN` environment variables are set,
-a dev container is running.
+The dev container is available when the `DEV_CONTAINER_HOST` and `DEV_TOKEN`
+environment variables are set.
 
 ### Health check
 
@@ -29,7 +29,9 @@ curl -s http://$DEV_CONTAINER_HOST/healthz
 
 Returns `{"status":"ok"}` when ready.
 
-### Running commands in the dev container
+### Running commands
+
+All build and test commands must be run via the dev container exec endpoint:
 
 ```bash
 curl -s -X POST http://$DEV_CONTAINER_HOST/exec \
@@ -38,21 +40,19 @@ curl -s -X POST http://$DEV_CONTAINER_HOST/exec \
   -d '{"cmd": "your-command-here", "timeout": 30}'
 ```
 
-The response is NDJSON with `stdout`, `stderr`, and `exit` stream types.
-Check the `exit` line for the exit code.
+The response is NDJSON. Each line is JSON with a `stream` field (`stdout`,
+`stderr`, or `exit`). The `exit` line has the exit `code`.
 
 ### Workflow
 
 1. Edit code in your working directory (it's on the shared volume)
 2. Run build/test commands via the dev container exec endpoint
-3. Read the output, fix issues, repeat
-4. Push when tests pass
+3. Read the NDJSON output to check results
+4. Fix issues and repeat until tests pass
 
 ## Go Test Project
 
-The `test-data/go-project/` directory contains a small Go project for testing.
-
-To run tests:
+`test-data/go-project/` contains a Go project. Run its tests with:
 
 ```bash
 curl -s -X POST http://$DEV_CONTAINER_HOST/exec \
