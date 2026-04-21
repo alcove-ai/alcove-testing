@@ -4,7 +4,7 @@ Test fixtures and agent definitions for the Alcove platform.
 
 ## Repository Structure
 
-- `.alcove/tasks/` — agent definitions (YAML)
+- `.alcove/agents/` — agent definitions (YAML)
 - `.alcove/workflows/` — workflow pipelines (YAML)
 - `.alcove/security-profiles/` — security profiles
 - `test-data/` — test projects and fixtures

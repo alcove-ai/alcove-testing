@@ -6,7 +6,7 @@ This repo contains example YAML task definitions and security profiles used to v
 
 ## Contents
 
-### Task Definitions (`.alcove/tasks/`)
+### Agent Definitions (`.alcove/agents/`)
 
 | File | Purpose |
 |------|---------|
