@@ -2,7 +2,7 @@
 """
 Task and Workflow Definition Validator for alcove-testing
 
-Validates that all task definitions in .alcove/tasks/ and workflow definitions
+Validates that all task definitions in .alcove/agents/ and workflow definitions
 in .alcove/workflows/ follow expected patterns and reference valid security profiles.
 
 Uses basic text parsing to avoid external dependencies.
@@ -200,7 +200,7 @@ def main():
     print()
 
     # Find and validate all task files
-    tasks_dir = Path('.alcove/tasks')
+    tasks_dir = Path('.alcove/agents')
     task_files = []
     if tasks_dir.exists():
         task_files = list(tasks_dir.glob('*.yml'))
