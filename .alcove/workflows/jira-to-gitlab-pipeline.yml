@@ -1,0 +1,47 @@
+name: JIRA to GitLab Docs Pipeline
+
+trigger:
+  jira:
+    projects: [PULP]
+    components: [services]
+    labels: [agentic-test]
+
+workflow:
+  - id: update-docs
+    type: agent
+    agent: JIRA Docs Updater
+    inputs:
+      issue_key: "{{trigger.issue_key}}"
+      issue_title: "{{trigger.issue_title}}"
+      issue_body: "{{trigger.issue_body}}"
+      issue_url: "{{trigger.issue_url}}"
+    outputs: [branch, file_changed]
+
+  - id: create-mr
+    type: bridge
+    action: create-mr
+    depends: "update-docs.Succeeded"
+    inputs:
+      project: hosted-pulp/pulp-docs
+      source_branch: "{{steps.update-docs.outputs.branch}}"
+      target_branch: main
+      title: "{{trigger.issue_key}}: {{trigger.issue_title}}"
+      description: "Automated docs update from JIRA issue {{trigger.issue_url}}"
+
+  - id: await-pipeline
+    type: bridge
+    action: await-pipeline
+    depends: "create-mr.Succeeded"
+    inputs:
+      project: hosted-pulp/pulp-docs
+      mr_iid: "{{steps.create-mr.outputs.mr_iid}}"
+      timeout: 600
+
+  - id: post-lgtm
+    type: bridge
+    action: post-note
+    depends: "await-pipeline.Succeeded"
+    inputs:
+      project: hosted-pulp/pulp-docs
+      mr_iid: "{{steps.create-mr.outputs.mr_iid}}"
+      body: "/lgtm"

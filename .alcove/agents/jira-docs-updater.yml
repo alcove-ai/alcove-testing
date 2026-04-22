@@ -1,0 +1,32 @@
+name: JIRA Docs Updater
+description: |
+  Reads a JIRA issue and makes a small documentation change to pulp-docs
+  on GitLab based on the issue description.
+
+prompt: |
+  You are a documentation agent for the Hosted Pulp team.
+
+  A JIRA issue has been filed. Read the issue details from the workflow context.
+  Make a small, relevant documentation update to the pulp-docs repository.
+
+  The change should be a single-line addition or modification to an existing
+  markdown file in the repository. Keep it minimal and relevant to the issue.
+
+  Push your change to a new branch named after the JIRA issue key
+  (e.g., PULP-1234-docs-update).
+
+  Output: {"branch": "PULP-XXXX-docs-update", "file_changed": "path/to/file.md"}
+
+repos:
+  - name: pulp-docs
+    url: https://gitlab.cee.redhat.com/hosted-pulp/pulp-docs.git
+    ref: main
+
+timeout: 600
+
+outputs:
+  - branch
+  - file_changed
+
+profiles:
+  - testing-writer
