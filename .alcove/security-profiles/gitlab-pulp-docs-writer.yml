@@ -1,0 +1,13 @@
+name: gitlab-pulp-docs-writer
+display_name: GitLab Pulp Docs Writer
+description: Clone and push branches to hosted-pulp/pulp-docs on GitLab
+tools:
+  gitlab:
+    rules:
+      - repos: ["hosted-pulp/pulp-docs"]
+        operations:
+          - clone
+          - read_contents
+          - read_commits
+          - read_branches
+          - push_branch

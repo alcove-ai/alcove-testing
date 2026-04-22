@@ -12,10 +12,10 @@ prompt: |
   The change should be a single-line addition or modification to an existing
   markdown file in the repository. Keep it minimal and relevant to the issue.
 
-  Push your change to a new branch named after the JIRA issue key
-  (e.g., PULP-1234-docs-update).
+  Push your change to a branch named {{trigger.issue_key}}-docs-update-YYYYMMDD-HHMMSS
+  (use the current date/time for uniqueness, e.g., PULP-1234-docs-update-20260421-153042).
 
-  Output: {"branch": "PULP-XXXX-docs-update", "file_changed": "path/to/file.md"}
+  Output: {"branch": "<the branch name you pushed>", "file_changed": "path/to/file.md"}
 
 repos:
   - name: pulp-docs
@@ -29,4 +29,4 @@ outputs:
   - file_changed
 
 profiles:
-  - testing-writer
+  - gitlab-pulp-docs-writer
