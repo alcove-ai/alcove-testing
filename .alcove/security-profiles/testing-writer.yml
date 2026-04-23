@@ -1,0 +1,11 @@
+name: testing-writer
+display_name: Testing Writer
+description: Minimal write profile for CI testing
+tools:
+  github:
+    rules:
+      - repos: ["*"]
+        operations:
+          - clone
+          - read_issues
+          - create_comment

@@ -1,0 +1,10 @@
+name: testing-readonly
+display_name: Testing Read Only
+description: Minimal profile for CI testing
+tools:
+  github:
+    rules:
+      - repos: ["*"]
+        operations:
+          - clone
+          - read_issues
