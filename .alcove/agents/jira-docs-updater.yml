@@ -23,10 +23,9 @@ repos:
     ref: main
 
 timeout: 600
+enforcement_mode: monitor
 
 outputs:
   - branch
   - file_changed
 
-profiles:
-  - gitlab-pulp-docs-writer

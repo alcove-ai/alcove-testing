@@ -15,6 +15,7 @@ executable:
     CLOUD_ML_REGION: "us-east5"
 
 timeout: 1800
+enforcement_mode: monitor
 
 direct_outbound: true
 

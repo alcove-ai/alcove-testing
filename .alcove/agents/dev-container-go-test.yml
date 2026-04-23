@@ -17,7 +17,6 @@ prompt: |
 repos:
   - url: https://github.com/bmbouter/alcove-testing.git
 timeout: 300
+enforcement_mode: monitor
 dev_container:
   image: docker.io/library/golang:1.25
-profiles:
-  - testing-writer

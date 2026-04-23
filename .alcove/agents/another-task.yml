@@ -3,6 +3,7 @@ description: A scheduled test task that runs every 5 minutes.
 prompt: |
   This is the scheduled test task (runs every 5 minutes via cron). Print "Hello from Test Scheduled Task" and exit.
 timeout: 30
+enforcement_mode: monitor
 schedule:
   cron: "*/5 * * * *"
   enabled: true

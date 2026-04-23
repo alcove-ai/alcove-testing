@@ -11,5 +11,4 @@ prompt: |
 repos:
   - url: https://github.com/bmbouter/alcove-testing.git
 timeout: 120
-profiles:
-  - testing-readonly
+enforcement_mode: monitor

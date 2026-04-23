@@ -22,7 +22,6 @@ repos:
   - url: https://github.com/bmbouter/alcove-testing-sample-app.git
   - url: https://github.com/bmbouter/alcove-testing-sample-app-lib.git
 timeout: 180
+enforcement_mode: monitor
 dev_container:
   image: docker.io/library/golang:1.25
-profiles:
-  - testing-readonly
