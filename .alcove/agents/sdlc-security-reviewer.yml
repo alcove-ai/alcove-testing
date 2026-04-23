@@ -7,5 +7,4 @@ prompt: |
   Review the PR for security vulnerabilities.
   Output: {"approved": true/false, "comments": "security findings"}
 timeout: 300
-profiles:
-  - testing-writer
+enforcement_mode: monitor

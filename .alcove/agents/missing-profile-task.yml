@@ -6,5 +6,4 @@ prompt: |
   This task should never execute. It exists to test that Alcove correctly
   detects and warns about missing security profile references.
 timeout: 30
-profiles:
-  - nonexistent-profile
+enforcement_mode: monitor

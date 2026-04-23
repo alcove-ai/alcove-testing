@@ -19,5 +19,4 @@ prompt: |
 
   Output: {"summary": "what you implemented"}
 timeout: 300
-profiles:
-  - testing-writer
+enforcement_mode: monitor
