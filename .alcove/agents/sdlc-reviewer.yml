@@ -8,4 +8,6 @@ prompt: |
   Post your review via the GitHub API.
   Output: {"approved": true/false, "comments": "review summary"}
 timeout: 300
+credentials:
+  GITHUB_TOKEN: github
 enforcement_mode: monitor

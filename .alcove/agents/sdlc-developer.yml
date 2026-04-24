@@ -19,4 +19,6 @@ prompt: |
 
   Output: {"summary": "what you implemented"}
 timeout: 300
+credentials:
+  GITHUB_TOKEN: github
 enforcement_mode: monitor
