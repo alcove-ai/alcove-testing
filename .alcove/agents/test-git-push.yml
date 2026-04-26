@@ -1,0 +1,18 @@
+name: Git Push Test
+description: Tests git push in monitor mode (reproduces credential issue)
+prompt: |
+  Run these commands in order and report what happens:
+  1. git checkout -b test-branch-$(date +%s)
+  2. echo "test" > /tmp/test-file.txt
+  3. cp /tmp/test-file.txt test-file.txt
+  4. git add test-file.txt
+  5. git commit -m "Test commit"
+  6. git push origin HEAD
+  Report the exact output of each command, especially any errors from git push.
+
+repos:
+  - name: alcove-testing
+    url: https://github.com/bmbouter/alcove-testing.git
+
+timeout: 120
+enforcement_mode: monitor
