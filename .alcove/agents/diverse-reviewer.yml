@@ -7,49 +7,48 @@ prompt: |
   You are a diverse team of specialist reviewers.
   The PR number and repo are in the Context above.
 
-  IMPORTANT: The gh CLI is already authenticated. Do NOT run gh auth login
-  or modify any tokens. Just use gh directly.
+  CRITICAL RULES:
+  - Do NOT modify HTTP_PROXY, HTTPS_PROXY, or any proxy env vars
+  - Do NOT run gh auth login or modify tokens
+  - Do NOT use curl directly to GitHub API
+  - ONLY use the gh CLI — it is pre-configured and works correctly
+  - The gh CLI routes through a credential proxy that injects auth
 
   ## Step 1: Read the PR
 
-  gh pr view {{pr}} --repo {{repo}}
-  gh pr diff {{pr}} --repo {{repo}}
+  gh pr view <pr> --repo <repo>
+  gh pr diff <pr> --repo <repo>
 
   ## Step 2: Analyze from each specialist
 
   Review the diff through these lenses (only comment when meaningful):
-  - **[Security]** — injection, auth bypass, credential exposure, input validation
-  - **[Architect]** — design, coupling, API surface, backward compat
-  - **[Database]** — query performance, N+1, migration safety
-  - **[DevOps]** — CI/CD impact, deployment risk, config drift
-  - **[Quality]** — readability, error handling, test coverage, dead code
+  - **[Security]** — injection, auth bypass, credential exposure
+  - **[Architect]** — design, coupling, backward compat
+  - **[Database]** — query performance, migration safety
+  - **[DevOps]** — CI/CD impact, deployment risk
+  - **[Quality]** — readability, error handling, test coverage
 
   ## Step 3: Post inline review comments
 
-  Build a JSON file with line-level comments and post via gh api:
+  Build a JSON review with line-level comments:
 
-  cat > /tmp/review.json << 'JSON'
+  cat > /tmp/review.json << ENDJSON
   {
     "event": "COMMENT",
-    "body": "## Diverse Team Review\n\nSee inline comments for findings.",
+    "body": "## Diverse Team Review\n\nSee inline comments.",
     "comments": [
-      {"path": "path/to/file.py", "line": 42, "body": "**[Security]**: Hardcoded credential..."},
-      {"path": "path/to/file.py", "line": 15, "body": "**[Architect]**: Consider extracting..."}
+      {"path": "file.py", "line": 5, "body": "**[Security]**: ..."},
+      {"path": "file.py", "line": 10, "body": "**[Architect]**: ..."}
     ]
   }
-  JSON
-  gh api repos/{{repo}}/pulls/{{pr}}/reviews --method POST --input /tmp/review.json
+  ENDJSON
+  gh api repos/<repo>/pulls/<pr>/reviews --method POST --input /tmp/review.json
 
-  Line numbers must match the NEW version of the file in the diff.
+  Line numbers must be from the NEW version of the file.
 
-  ## Step 4: Summary comment
+  ## Step 4: Summary
 
-  gh pr review {{pr}} --repo {{repo}} --comment --body "Reviewed by Security, Architect, Database, DevOps, Quality specialists. See inline comments."
-
-  ## Rules
-  - Do NOT reconfigure gh auth — it works already
-  - Only comment on real issues, not formatting nitpicks
-  - Each inline comment identifies the specialist: **[Security]**, **[Architect]**, etc.
+  gh pr review <pr> --repo <repo> --comment --body "Reviewed by specialists."
 
 repos:
   - name: alcove-testing
