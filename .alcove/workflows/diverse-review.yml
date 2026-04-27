@@ -1,0 +1,15 @@
+name: Diverse Team PR Review
+trigger:
+  github:
+    events: [pull_request]
+    actions: [opened, synchronize]
+    repos: [bmbouter/alcove-testing]
+    delivery_mode: polling
+
+workflow:
+  - id: review
+    type: agent
+    agent: Diverse Team Reviewer
+    inputs:
+      pr: "{{trigger.pr_number}}"
+      repo: "bmbouter/alcove-testing"
