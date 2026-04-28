@@ -15,7 +15,7 @@ prompt: |
   5. Write results to /tmp/alcove-outputs.json including the branch name:
      {"test_result": "pass", "branch": "<your-branch-name>", "fix_applied": "description"}
 repos:
-  - url: https://github.com/bmbouter/alcove-testing.git
+  - url: https://github.com/alcove-ai/alcove-testing.git
 timeout: 300
 credentials:
   GITHUB_TOKEN: github

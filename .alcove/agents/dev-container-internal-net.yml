@@ -22,7 +22,7 @@ prompt: |
      - If the curl to httpbin.org succeeded, the test FAILED:
        {"test_result": "fail", "message": "Dev container unexpectedly has internet access"}
 repos:
-  - url: https://github.com/bmbouter/alcove-testing.git
+  - url: https://github.com/alcove-ai/alcove-testing.git
 timeout: 120
 credentials:
   GITHUB_TOKEN: github

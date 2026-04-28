@@ -1,7 +1,7 @@
 name: SDLC Developer
 description: Implements changes described in the issue context. Used by the SDLC workflow.
 repos:
-  - url: https://github.com/bmbouter/alcove-testing.git
+  - url: https://github.com/alcove-ai/alcove-testing.git
 prompt: |
   Workflow Context (from previous steps):
     issue_number: {{issue_number}}

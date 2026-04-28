@@ -3,7 +3,7 @@ trigger:
   github:
     events: [pull_request]
     actions: [opened, synchronize]
-    repos: [bmbouter/alcove-testing]
+    repos: [alcove-ai/alcove-testing]
     delivery_mode: polling
 
 workflow:
@@ -12,4 +12,4 @@ workflow:
     agent: Diverse Team Reviewer
     inputs:
       pr: "{{trigger.pr_number}}"
-      repo: "bmbouter/alcove-testing"
+      repo: "alcove-ai/alcove-testing"

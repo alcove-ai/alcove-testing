@@ -1,11 +1,11 @@
 name: Issue Greeter
 description: Comments on new issues in alcove-testing with a friendly greeting
 prompt: |
-  An issue was just opened or reopened on bmbouter/alcove-testing.
+  An issue was just opened or reopened on alcove-ai/alcove-testing.
   Post a brief, friendly comment (2-3 sentences) thanking the reporter.
   Use the GitHub API with $GITHUB_TOKEN and $GITHUB_API_URL.
 repos:
-  - url: https://github.com/bmbouter/alcove-testing.git
+  - url: https://github.com/alcove-ai/alcove-testing.git
 timeout: 120
 credentials:
   GITHUB_TOKEN: github
@@ -18,5 +18,5 @@ trigger:
       - opened
       - reopened
     repos:
-      - bmbouter/alcove-testing
+      - alcove-ai/alcove-testing
     delivery_mode: polling

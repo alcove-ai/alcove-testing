@@ -15,7 +15,7 @@ prompt: |
   5. Write the results to /tmp/alcove-outputs.json:
      {"test_result": "pass", "message": "Dev container shim working"}
 repos:
-  - url: https://github.com/bmbouter/alcove-testing.git
+  - url: https://github.com/alcove-ai/alcove-testing.git
 timeout: 120
 credentials:
   GITHUB_TOKEN: github
