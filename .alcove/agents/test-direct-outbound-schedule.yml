@@ -1,0 +1,9 @@
+name: Direct Outbound Schedule Test
+description: Tests that cron-dispatched sessions inherit direct_outbound from agent definition
+prompt: "Echo 'direct outbound test' and exit"
+direct_outbound: true
+enforcement_mode: monitor
+timeout: 60
+schedule:
+  cron: "* * * * *"
+  enabled: true
