@@ -19,8 +19,8 @@ prompt: |
   {"repos_found": "2", "app_test_status": "fail or pass", "lib_test_status": "fail or pass",
    "app_bug": "description of bug found", "lib_bug": "description of bug found"}
 repos:
-  - url: https://github.com/bmbouter/alcove-testing-sample-app.git
-  - url: https://github.com/bmbouter/alcove-testing-sample-app-lib.git
+  - url: https://github.com/alcove-ai/alcove-testing-sample-app.git
+  - url: https://github.com/alcove-ai/alcove-testing-sample-app-lib.git
 timeout: 180
 credentials:
   GITHUB_TOKEN: github

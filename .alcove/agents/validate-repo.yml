@@ -9,7 +9,7 @@ prompt: |
   If the validation passes, report success.
   If there are any issues, report them with details about what needs to be fixed.
 repos:
-  - url: https://github.com/bmbouter/alcove-testing.git
+  - url: https://github.com/alcove-ai/alcove-testing.git
 timeout: 120
 credentials:
   GITHUB_TOKEN: github
